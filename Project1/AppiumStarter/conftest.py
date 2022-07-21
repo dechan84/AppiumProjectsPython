@@ -20,12 +20,14 @@ def ConfigureAppium(request):
     options = UiAutomator2Options()
     options.app = 'C:\\Users\\victo\\Documents\\PythonProjectsPyCharm\\AppiumPython\\Project1\\Resources\\ApiDemos-debug.apk'
     options.device_name = 'Victor Pixel 3a API 31'
-
+    # Setting driver config
     driver = webdriver.Remote('http://127.0.0.1:4723', options=options)
-
+    # Set a timeout of 5s for each driver action
+    driver.implicitly_wait(20)
     request.cls.driver = driver
-    # driver.press_keycode(AndroidKeyCode.BACK)
     yield
     driver.quit()
     service.stop()
+
+
 

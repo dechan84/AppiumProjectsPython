@@ -11,8 +11,12 @@ class TestSwipeBasics(BaseClass):
         self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Views").click()
         self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Gallery").click()
         self.driver.find_element(AppiumBy.ACCESSIBILITY_ID, "1. Photos").click()
+        # Choose the first image
         myImage = self.driver.find_elements(AppiumBy.XPATH, "//android.widget.ImageView")[0]
+        # Assert that is focusable
         assert myImage.get_attribute("focusable") == "true"
+        # Swipe
         self.Swipe(myImage, "left")
+        # First image should not be focusable anymore
         assert myImage.get_attribute("focusable") == "false"
 
